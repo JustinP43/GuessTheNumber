@@ -11,18 +11,22 @@ difficulty_level = {
 }
 
 def set_difficulty():
-    return difficulty_level[input("Choose your starting difficulty, 'easy' or 'hard': ").lower()]
+    difficulty = input("Choose your starting difficulty, 'easy' or 'hard': ").lower()
+    if difficulty == "hard":
+        return difficulty_level["hard"]
+    else:
+        return difficulty_level["easy"]
 
 def check_answer(guess, answer, turns):
     if answer == guess:
         print(f"You guessed the number correctly!  It was {guess}.")
         return 0
     elif guess < answer:
-        print(f"Your guess is too low.  Guess higher.")
+        print(f"Your guess is too low.")
         turns -= 1
         return turns
     else:
-        print(f"Your guess is too high.  Guess lower.")
+        print(f"Your guess is too high.")
         turns -= 1
         return turns
 
@@ -39,7 +43,7 @@ def guess_the_number():
         if turns > 0:
             print(f"You have {turns} guesses remaining.")
             guess = int(input("Next Guess: "))
-        elif turns == 0:
+        elif turns == 0 and guess != answer:
             print(f"You are out of turns, the correct answer was {answer}.")
         
         
